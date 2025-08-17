@@ -43,3 +43,10 @@ buildNumber.properties
 
 # OS
 .DS_Store
+
+# Screenshots and images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
