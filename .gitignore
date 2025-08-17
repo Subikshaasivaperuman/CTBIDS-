@@ -50,3 +50,6 @@ buildNumber.properties
 *.jpeg
 *.gif
 *.bmp
+
+# Specific test files to ignore
+src/test/java/com/ctbids/tests/CTBidsLoginTest.java
