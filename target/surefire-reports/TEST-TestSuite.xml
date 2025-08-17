@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="153.212" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="TestSuite" time="152.46" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="webdriver.chrome.driver" value="C:\Users\JohnW\.cache\selenium\chromedriver\win64\139.0.7258.68\chromedriver.exe"/>
@@ -17,7 +17,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="IN"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-24\bin"/>
-    <property name="sun.java.command" value="C:\Users\JohnW\AppData\Local\Temp\surefire17363008252905658164\surefirebooter-20250817232104357_3.jar C:\Users\JohnW\AppData\Local\Temp\surefire17363008252905658164 2025-08-17T23-21-04_223-jvmRun1 surefire-20250817232104357_1tmp surefire_0-20250817232104357_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\JohnW\AppData\Local\Temp\surefire13809592042840663112\surefirebooter-20250818005438609_3.jar C:\Users\JohnW\AppData\Local\Temp\surefire13809592042840663112 2025-08-18T00-54-38_497-jvmRun1 surefire-20250818005438609_1tmp surefire_0-20250818005438609_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\JohnW\OneDrive\Documents\Automation AI\CTBIDS\target\test-classes;C:\Users\JohnW\OneDrive\Documents\Automation AI\CTBIDS\target\classes;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.2\spring-boot-starter-web-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.2\spring-boot-starter-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot\3.2.2\spring-boot-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.2\spring-boot-autoconfigure-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.2\spring-boot-starter-logging-3.2.2.jar;C:\Users\JohnW\.m2\repository\ch\qos\logback\logback-classic\1.4.14\logback-classic-1.4.14.jar;C:\Users\JohnW\.m2\repository\ch\qos\logback\logback-core\1.4.14\logback-core-1.4.14.jar;C:\Users\JohnW\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\JohnW\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\JohnW\.m2\repository\org\slf4j\jul-to-slf4j\2.0.11\jul-to-slf4j-2.0.11.jar;C:\Users\JohnW\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\JohnW\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.2\spring-boot-starter-json-3.2.2.jar;C:\Users\JohnW\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.3\jackson-databind-2.15.3.jar;C:\Users\JohnW\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.3\jackson-annotations-2.15.3.jar;C:\Users\JohnW\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.3\jackson-core-2.15.3.jar;C:\Users\JohnW\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.3\jackson-datatype-jdk8-2.15.3.jar;C:\Users\JohnW\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.3\jackson-datatype-jsr310-2.15.3.jar;C:\Users\JohnW\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.3\jackson-module-parameter-names-2.15.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.2\spring-boot-starter-tomcat-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.18\tomcat-embed-core-10.1.18.jar;C:\Users\JohnW\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.18\tomcat-embed-el-10.1.18.jar;C:\Users\JohnW\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.18\tomcat-embed-websocket-10.1.18.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-web\6.1.3\spring-web-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-beans\6.1.3\spring-beans-6.1.3.jar;C:\Users\JohnW\.m2\repository\io\micrometer\micrometer-observation\1.12.2\micrometer-observation-1.12.2.jar;C:\Users\JohnW\.m2\repository\io\micrometer\micrometer-commons\1.12.2\micrometer-commons-1.12.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-webmvc\6.1.3\spring-webmvc-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-aop\6.1.3\spring-aop-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-context\6.1.3\spring-context-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-expression\6.1.3\spring-expression-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.2\spring-boot-starter-test-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-test\3.2.2\spring-boot-test-3.2.2.jar;C:\Users\JohnW\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.2\spring-boot-test-autoconfigure-3.2.2.jar;C:\Users\JohnW\.m2\repository\com\jayway\jsonpath\json-path\2.8.0\json-path-2.8.0.jar;C:\Users\JohnW\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\JohnW\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\JohnW\.m2\repository\net\minidev\json-smart\2.5.0\json-smart-2.5.0.jar;C:\Users\JohnW\.m2\repository\net\minidev\accessors-smart\2.5.0\accessors-smart-2.5.0.jar;C:\Users\JohnW\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\JohnW\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\JohnW\.m2\repository\org\awaitility\awaitility\4.2.0\awaitility-4.2.0.jar;C:\Users\JohnW\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\JohnW\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\JohnW\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\JohnW\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\JohnW\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\JohnW\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\JohnW\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\JohnW\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\JohnW\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\JohnW\.m2\repository\org\mockito\mockito-core\5.7.0\mockito-core-5.7.0.jar;C:\Users\JohnW\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.11\byte-buddy-agent-1.14.11.jar;C:\Users\JohnW\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\JohnW\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\JohnW\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\JohnW\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-core\6.1.3\spring-core-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-jcl\6.1.3\spring-jcl-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\springframework\spring-test\6.1.3\spring-test-6.1.3.jar;C:\Users\JohnW\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-java\4.15.0\selenium-java-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-api\4.15.0\selenium-api-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.15.0\selenium-chrome-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.15.0\selenium-chromium-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.15.0\selenium-manager-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v117\4.15.0\selenium-devtools-v117-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v118\4.15.0\selenium-devtools-v118-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v119\4.15.0\selenium-devtools-v119-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.15.0\selenium-devtools-v85-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.15.0\selenium-edge-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.15.0\selenium-firefox-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-http\4.15.0\selenium-http-4.15.0.jar;C:\Users\JohnW\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.15.0\selenium-ie-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.15.0\selenium-remote-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-api\1.31.0\opentelemetry-api-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-context\1.31.0\opentelemetry-context-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.31.0\opentelemetry-exporter-logging-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.31.0\opentelemetry-sdk-common-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.31.0\opentelemetry-sdk-extension-autoconfigure-spi-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.31.0\opentelemetry-sdk-extension-autoconfigure-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-api-events\1.31.0-alpha\opentelemetry-api-events-1.31.0-alpha.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.31.0\opentelemetry-sdk-trace-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.31.0\opentelemetry-sdk-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.31.0\opentelemetry-sdk-metrics-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-extension-incubator\1.31.0-alpha\opentelemetry-extension-incubator-1.31.0-alpha.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.31.0\opentelemetry-sdk-logs-1.31.0.jar;C:\Users\JohnW\.m2\repository\io\opentelemetry\opentelemetry-semconv\1.28.0-alpha\opentelemetry-semconv-1.28.0-alpha.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-os\4.15.0\selenium-os-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\apache\commons\commons-exec\1.3\commons-exec-1.3.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.15.0\selenium-safari-driver-4.15.0.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-support\4.15.0\selenium-support-4.15.0.jar;C:\Users\JohnW\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\JohnW\.m2\repository\com\google\guava\guava\32.1.2-jre\guava-32.1.2-jre.jar;C:\Users\JohnW\.m2\repository\com\google\guava\failureaccess\1.0.1\failureaccess-1.0.1.jar;C:\Users\JohnW\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\JohnW\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\JohnW\.m2\repository\org\checkerframework\checker-qual\3.33.0\checker-qual-3.33.0.jar;C:\Users\JohnW\.m2\repository\com\google\errorprone\error_prone_annotations\2.18.0\error_prone_annotations-2.18.0.jar;C:\Users\JohnW\.m2\repository\com\google\j2objc\j2objc-annotations\2.8\j2objc-annotations-2.8.jar;C:\Users\JohnW\.m2\repository\net\bytebuddy\byte-buddy\1.14.11\byte-buddy-1.14.11.jar;C:\Users\JohnW\.m2\repository\org\seleniumhq\selenium\selenium-json\4.15.0\selenium-json-4.15.0.jar;C:\Users\JohnW\.m2\repository\io\github\bonigarcia\webdrivermanager\5.6.2\webdrivermanager-5.6.2.jar;C:\Users\JohnW\.m2\repository\org\slf4j\slf4j-api\2.0.11\slf4j-api-2.0.11.jar;C:\Users\JohnW\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\JohnW\.m2\repository\com\github\docker-java\docker-java\3.3.4\docker-java-3.3.4.jar;C:\Users\JohnW\.m2\repository\com\github\docker-java\docker-java-core\3.3.4\docker-java-core-3.3.4.jar;C:\Users\JohnW\.m2\repository\com\github\docker-java\docker-java-api\3.3.4\docker-java-api-3.3.4.jar;C:\Users\JohnW\.m2\repository\commons-io\commons-io\2.13.0\commons-io-2.13.0.jar;C:\Users\JohnW\.m2\repository\org\bouncycastle\bcpkix-jdk18on\1.76\bcpkix-jdk18on-1.76.jar;C:\Users\JohnW\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.76\bcprov-jdk18on-1.76.jar;C:\Users\JohnW\.m2\repository\org\bouncycastle\bcutil-jdk18on\1.76\bcutil-jdk18on-1.76.jar;C:\Users\JohnW\.m2\repository\org\slf4j\jcl-over-slf4j\2.0.11\jcl-over-slf4j-2.0.11.jar;C:\Users\JohnW\.m2\repository\com\github\docker-java\docker-java-transport-httpclient5\3.3.4\docker-java-transport-httpclient5-3.3.4.jar;C:\Users\JohnW\.m2\repository\com\github\docker-java\docker-java-transport\3.3.4\docker-java-transport-3.3.4.jar;C:\Users\JohnW\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\JohnW\.m2\repository\org\brotli\dec\0.1.2\dec-0.1.2.jar;C:\Users\JohnW\.m2\repository\org\apache\commons\commons-lang3\3.13.0\commons-lang3-3.13.0.jar;C:\Users\JohnW\.m2\repository\org\apache\commons\commons-compress\1.24.0\commons-compress-1.24.0.jar;C:\Users\JohnW\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.3\httpclient5-5.2.3.jar;C:\Users\JohnW\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2.4\httpcore5-5.2.4.jar;C:\Users\JohnW\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2.4\httpcore5-h2-5.2.4.jar;C:\Users\JohnW\.m2\repository\org\testng\testng\7.8.0\testng-7.8.0.jar;C:\Users\JohnW\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\JohnW\.m2\repository\org\webjars\jquery\3.6.1\jquery-3.6.1.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -32,7 +32,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\JohnW\AppData\Local\Temp\surefire17363008252905658164\surefirebooter-20250817232104357_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\JohnW\AppData\Local\Temp\surefire13809592042840663112\surefirebooter-20250818005438609_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="24.0.1+9-30"/>
@@ -52,7 +52,7 @@
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-24\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\maven-mvnd-1.0.2-windows-amd64\bin;C:\apache-maven-3.9.11\bin;C:\Users\JohnW\AppData\Local\Microsoft\WindowsApps;C:\Users\JohnW\AppData\Roaming\npm;C:\Users\JohnW\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\JohnW\OneDrive\Documents\maven-mvnd-1.0.2-windows-amd64\maven-mvnd-1.0.2-windows-amd64\bin;;c:\Users\JohnW\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-24\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Google\Chrome\Application;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\nodejs\;C:\maven-mvnd-1.0.2-windows-amd64\bin;C:\apache-maven-3.9.11\bin;C:\Users\JohnW\AppData\Local\Microsoft\WindowsApps;C:\Users\JohnW\AppData\Roaming\npm;C:\Users\JohnW\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\JohnW\OneDrive\Documents\maven-mvnd-1.0.2-windows-amd64\maven-mvnd-1.0.2-windows-amd64\bin;;c:\Users\JohnW\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -60,10 +60,10 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="openCTBidsTest" classname="com.ctbids.tests.CTBidsLogin" time="37.235">
+  <testcase name="openCTBidsTest" classname="com.ctbids.tests.CTBidsLogin" time="16.114">
     <system-out><![CDATA[Setting up WebDriver for test suite...
-23:21:06.884 [main] INFO io.github.bonigarcia.wdm.WebDriverManager -- Using chromedriver 139.0.7258.68 (resolved driver for Chrome 139)
-23:21:06.914 [main] INFO io.github.bonigarcia.wdm.WebDriverManager -- Exporting webdriver.chrome.driver as C:\Users\JohnW\.cache\selenium\chromedriver\win64\139.0.7258.68\chromedriver.exe
+00:54:40.009 [main] INFO io.github.bonigarcia.wdm.WebDriverManager -- Using chromedriver 139.0.7258.68 (resolved driver for Chrome 139)
+00:54:40.045 [main] INFO io.github.bonigarcia.wdm.WebDriverManager -- Exporting webdriver.chrome.driver as C:\Users\JohnW\.cache\selenium\chromedriver\win64\139.0.7258.68\chromedriver.exe
 WebDriver setup complete for test suite.
 Starting test...
 Navigating to https://buyeruat.ctbids.com...
@@ -77,13 +77,13 @@ Looking for login submit button...
 Login submitted successfully.
 Test completed successfully.
 ]]></system-out>
-    <system-err><![CDATA[Aug 17, 2025 11:21:08 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+    <system-err><![CDATA[Aug 18, 2025 12:54:42 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
 WARNING: Unable to find CDP implementation matching 139
-Aug 17, 2025 11:21:08 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+Aug 18, 2025 12:54:42 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
 WARNING: Unable to find version of CDP to use for 139.0.7258.67. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.15.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
 ]]></system-err>
   </testcase>
-  <testcase name="completeProfileTest" classname="com.ctbids.tests.ProfileComplete" time="111.204">
+  <testcase name="completeProfileTest" classname="com.ctbids.tests.ProfileComplete" time="132.351">
     <system-out><![CDATA[Starting profile completion test...
 Looking for profile menu...
 Found profile menu using selector: //div[contains(@class, 'avatar')]
@@ -103,12 +103,41 @@ Save button not found with selector: //div[contains(@class, 'editor-footer')]//b
 Found Save button using selector: //div[contains(@class, 'dialog')]//button[last()]
 Clicked Save button using Actions
 Image upload completed
-Confirmation element not found with selector: //div[contains(@class, 'success')]
-Confirmation element not found with selector: //span[contains(text(), 'uploaded successfully')]
-Confirmation element not found with selector: //div[contains(@class, 'upload-complete')]
-Confirmation element not found with selector: //div[contains(@class, 'avatar')]//img[contains(@src, 'download.png')]
-Warning: Could not find upload confirmation element
 File uploaded successfully
+Starting username validation...
+Clearing existing username: bubloo
+Found error with selector: .text-danger
+Testing invalid username: User@Name
+Actual error message: Please only use alphanumeric characters
+Found error with selector: .text-danger
+Testing invalid username: User#123
+Actual error message: Please only use alphanumeric characters
+Found error with selector: .text-danger
+Testing invalid username: UserCancelled
+Actual error message: The information provided does not meet the minimum registration standards.
+Testing invalid username: BidUser
+Actual error message: 
+Testing invalid username: CTBIDSuser
+Actual error message: 
+Found error with selector: .text-danger
+Testing invalid username: User$123
+Actual error message: Please only use alphanumeric characters
+Found error with selector: .text-danger
+Testing invalid username: Failed_Account
+Actual error message: Please only use alphanumeric characters
+Testing invalid username: Outbid2023
+Actual error message: 
+Testing valid username: JohnDoe123
+No error message displayed as expected
+Testing valid username: María'Smith
+No error message displayed as expected
+Testing valid username: José"Rodriguez
+No error message displayed as expected
+Testing valid username: Ana2023
+No error message displayed as expected
+Testing valid username: Carlos'García
+No error message displayed as expected
+Username validation completed successfully
 Test completed successfully.
 ]]></system-out>
   </testcase>

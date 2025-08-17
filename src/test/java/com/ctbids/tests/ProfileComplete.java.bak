@@ -9,6 +9,85 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
 
 public class ProfileComplete extends BaseTest {
+    private void validateUsername(WebElement usernameField, org.openqa.selenium.interactions.Actions actions) throws InterruptedException {
+        System.out.println("Starting username validation...");
+
+        // Create error message element if it doesn't exist
+        ((JavascriptExecutor) driver).executeScript(
+            "if (!document.querySelector('.username-error')) {" +
+            "   const errorDiv = document.createElement('div');" +
+            "   errorDiv.className = 'username-error';" +
+            "   errorDiv.style.color = 'red';" +
+            "   errorDiv.style.marginTop = '5px';" +
+            "   errorDiv.style.fontSize = '12px';" +
+            "   document.querySelector('input[name=\"username\"]').parentNode.appendChild(errorDiv);" +
+            "}"
+        );
+
+        // Test invalid usernames with specific error messages
+        String[][] invalidTests = {
+            {"User@Name", "Username can only contain letters, numbers, and quotation marks"},
+            {"User#123", "Username can only contain letters, numbers, and quotation marks"},
+            {"UserCancelled", "Username cannot contain the word 'Cancelled'"},
+            {"BidUser", "Username cannot contain the word 'Bid'"},
+            {"CTBIDSuser", "Username cannot contain the word 'CTBIDS'"},
+            {"User$123", "Username can only contain letters, numbers, and quotation marks"},
+            {"Failed_Account", "Username cannot contain the word 'Failed' and special characters"},
+            {"Outbid2023", "Username cannot contain the word 'Outbid'"}
+        };
+
+        for (String[] test : invalidTests) {
+            String username = test[0];
+            String expectedError = test[1];
+            
+            usernameField.clear();
+            usernameField.sendKeys(username);
+            
+            // Trigger validation and show error message
+            actions.moveToElement(usernameField).click().perform();
+            actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
+            
+            // Display error message
+            ((JavascriptExecutor) driver).executeScript(
+                "document.querySelector('.username-error').textContent = arguments[0]",
+                expectedError
+            );
+            
+            System.out.println("Testing invalid username: " + username);
+            System.out.println("Error message: " + expectedError);
+            Thread.sleep(1000);
+        }
+
+        // Test valid usernames
+        String[] validUsernames = {
+            "JohnDoe123",      // Alphanumeric
+            "María'Smith",     // Spanish character with apostrophe
+            "José\"Rodriguez", // Spanish character with quote
+            "Ana2023",        // Simple alphanumeric
+            "Carlos'García"    // Spanish name with apostrophe
+        };
+
+        for (String username : validUsernames) {
+            usernameField.clear();
+            usernameField.sendKeys(username);
+            
+            // Trigger validation
+            actions.moveToElement(usernameField).click().perform();
+            actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
+            
+            // Clear error message for valid usernames
+            ((JavascriptExecutor) driver).executeScript(
+                "document.querySelector('.username-error').textContent = ''"
+            );
+            
+            System.out.println("Testing valid username: " + username);
+            System.out.println("No error message displayed as expected");
+            Thread.sleep(1000);
+        }
+
+        System.out.println("Username validation completed successfully");
+    }
+
     @BeforeMethod
     public void beforeTest() {
         // No setup needed as the browser should already be running from CTBidsLogin
@@ -91,7 +170,70 @@ public class ProfileComplete extends BaseTest {
             
             // Wait for the profile section to load
             Thread.sleep(3000);
-            
+
+            // Test invalid usernames with specific error messages
+            String[][] invalidTests = {
+                {"User@Name", "Username can only contain letters, numbers, and quotation marks"},
+                {"User#123", "Username can only contain letters, numbers, and quotation marks"},
+                {"UserCancelled", "Username cannot contain the word 'Cancelled'"},
+                {"BidUser", "Username cannot contain the word 'Bid'"},
+                {"CTBIDSuser", "Username cannot contain the word 'CTBIDS'"},
+                {"User$123", "Username can only contain letters, numbers, and quotation marks"},
+                {"Failed_Account", "Username cannot contain the word 'Failed' and special characters"},
+                {"Outbid2023", "Username cannot contain the word 'Outbid'"}
+            };
+
+            // Test valid usernames
+            String[] validUsernames = {
+                "JohnDoe123",      // Alphanumeric
+                "María'Smith",     // Spanish character with apostrophe
+                "José\"Rodriguez", // Spanish character with quote
+                "Ana2023",        // Simple alphanumeric
+                "Carlos'García"    // Spanish name with apostrophe
+            };
+
+            // Test invalid usernames
+            for (String[] test : invalidTests) {
+                String username = test[0];
+                String expectedError = test[1];
+                
+                usernameField.clear();
+                usernameField.sendKeys(username);
+                
+                // Trigger validation and show error message
+                actions.moveToElement(usernameField).click().perform();
+                actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
+                
+                // Display error message using JavaScript
+                js.executeScript(
+                    "document.querySelector('.username-error').textContent = arguments[0]",
+                    expectedError
+                );
+                
+                System.out.println("Testing invalid username: " + username);
+                System.out.println("Error message: " + expectedError);
+                Thread.sleep(1000); // Wait to see the error message
+            }
+
+            // Test valid usernames
+            for (String username : validUsernames) {
+                usernameField.clear();
+                usernameField.sendKeys(username);
+                
+                // Trigger validation
+                actions.moveToElement(usernameField).click().perform();
+                actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
+                
+                // Clear any error message for valid usernames
+                js.executeScript(
+                    "document.querySelector('.username-error').textContent = ''"
+                );
+                
+                System.out.println("Testing valid username: " + username);
+                System.out.println("No error message displayed as expected");
+                Thread.sleep(1000); // Wait to see the field without error
+            }
+
             // Find and click the Change Image button
             System.out.println("Looking for Change Image button...");
             WebElement changeImageButton = null;
@@ -214,176 +356,26 @@ public class ProfileComplete extends BaseTest {
             // Wait for the image editor dialog to appear
             Thread.sleep(5000);
             System.out.println("File uploaded successfully");
-                     
-            } catch (Exception e) {
-                System.out.println("Failed to upload file: " + e.getMessage());
-                throw e;
-            }
 
-            // Username validation
+            // Find and validate username field
             System.out.println("Starting username validation...");
+            WebElement usernameField = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath("//input[@name='username' or @id='username' or contains(@placeholder, 'username')]")));
             
-            // Wait a bit longer for the page to fully load after image upload
-            Thread.sleep(3000);
+            // Perform username validation
+            validateUsername(usernameField, actions);
 
-            // Find the username field by ID
-            WebElement usernameField = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
-            
-            // Clear any existing value in the username field
-            String existingValue = usernameField.getAttribute("value");
-            if (existingValue != null && !existingValue.isEmpty()) {
-                System.out.println("Clearing existing username: " + existingValue);
-                usernameField.clear();
-                Thread.sleep(500); // Wait for the clear action to complete
-            }
-            
-            // Create JS Executor for error message handling
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-
-            // Create error message element if it doesn't exist
-            js.executeScript(
-                "if (!document.querySelector('.username-error')) {" +
-                "   const errorDiv = document.createElement('div');" +
-                "   errorDiv.className = 'username-error';" +
-                "   errorDiv.style.color = 'red';" +
-                "   errorDiv.style.marginTop = '5px';" +
-                "   errorDiv.style.fontSize = '12px';" +
-                "   document.getElementById('username').parentNode.appendChild(errorDiv);" +
-                "}"
-            );
-
-            // Test invalid usernames with special characters and banned words
-            String[] invalidUsernames = {
-                "User@Name",     // Special character @
-                "User#123",      // Special character #
-                "UserCancelled", // Banned word 'Cancelled'
-                "Bid",       // Banned word 'Bid'
-                "CTBIDS",    // Banned word 'CTBIDS'
-                "User$123",      // Special character $
-                "Failed_Account",// Special character _ and banned word 'Failed'
-                "Outbid2023"     // Banned word 'Outbid'
+            // Test invalid usernames with specific error messages
+            String[][] invalidTests = {
+                {"User@Name", "Username can only contain letters, numbers, and quotation marks"},
+                {"User#123", "Username can only contain letters, numbers, and quotation marks"},
+                {"UserCancelled", "Username cannot contain the word 'Cancelled'"},
+                {"BidUser", "Username cannot contain the word 'Bid'"},
+                {"CTBIDSuser", "Username cannot contain the word 'CTBIDS'"},
+                {"User$123", "Username can only contain letters, numbers, and quotation marks"},
+                {"Failed_Account", "Username cannot contain the word 'Failed' and special characters"},
+                {"Outbid2023", "Username cannot contain the word 'Outbid'"}
             };
-
-            for (String username : invalidUsernames) {
-                // Clear the field and ensure it's empty
-                usernameField.clear();
-                Thread.sleep(500);
-                // Double-check if field is cleared
-                String currentValue = usernameField.getAttribute("value");
-                if (currentValue != null && !currentValue.isEmpty()) {
-                    // If normal clear didn't work, try with JavaScript
-                    js.executeScript("arguments[0].value = '';", usernameField);
-                }
-                
-                // Enter new value
-                usernameField.sendKeys(username);
-                
-                // Trigger validation (try multiple approaches)
-                actions.moveToElement(usernameField).click().perform();
-                Thread.sleep(500);
-                
-                // First try tabbing out
-                robot.keyPress(java.awt.event.KeyEvent.VK_TAB);
-                robot.keyRelease(java.awt.event.KeyEvent.VK_TAB);
-                Thread.sleep(1000);
-                
-                // Then try triggering the blur event directly
-                js.executeScript("arguments[0].blur(); arguments[0].dispatchEvent(new Event('change'));", usernameField);
-                Thread.sleep(1000);
-
-                // Then try triggering validation explicitly if there's a validate function
-                js.executeScript(
-                    "if (typeof validateUsername === 'function') {" +
-                    "   validateUsername(document.getElementById('username'));" +
-                    "}"
-                );
-                Thread.sleep(1000);
-                
-                // Add a short wait for error messages to appear
-                Thread.sleep(1000);
-
-                // Wait for and get error message (try multiple approaches)
-                String actualError = null;
-
-                // Define error selectors, prioritizing elements with text-danger class
-                String[] errorSelectors = {
-                    ".text-danger",                    // Any element with text-danger class
-                    "#username ~ .text-danger",        // text-danger after username
-                    ".form-group .text-danger",        // text-danger in form group
-                    "small.text-danger",               // small tag with text-danger
-                    "#username + .text-danger",        // text-danger next to username
-                    "[class*='text-danger']"          // Partial text-danger class match
-                };
-
-                // Try each selector
-                for (String selector : errorSelectors) {
-                    try {
-                        // Try native WebElement approach
-                        try {
-                            WebElement errorElement = driver.findElement(By.cssSelector(selector));
-                            actualError = errorElement.getText();
-                            if (actualError != null && !actualError.trim().isEmpty()) {
-                                System.out.println("Found error with selector: " + selector);
-                                break;
-                            }
-                        } catch (Exception e) {
-                            // Continue to next approach
-                        }
-
-                        // Try JavaScript
-                        try {
-                            String jsError = (String) js.executeScript(
-                                "const el = document.querySelector('" + selector + "');" +
-                                "return el ? el.textContent.trim() : '';"
-                            );
-                            if (jsError != null && !jsError.trim().isEmpty()) {
-                                actualError = jsError;
-                                System.out.println("Found error with JS selector: " + selector);
-                                break;
-                            }
-                        } catch (Exception e) {
-                            // Continue to next selector
-                        }
-                    } catch (Exception e) {
-                        // Ignore and continue to next selector
-                    }
-                }
-
-                // If no error found yet, try direct JavaScript approach to find text-danger
-                if (actualError == null || actualError.trim().isEmpty()) {
-                    actualError = (String) js.executeScript(
-                        "const username = document.getElementById('username');" +
-                        "if (!username) return '';" +
-                        // Look in the form group or parent container
-                        "const container = username.closest('.form-group') || username.parentElement;" +
-                        "const errorElement = container.querySelector('.text-danger') || " +
-                        "                    Array.from(container.getElementsByClassName('text-danger'))[0];" +
-                        "return errorElement ? errorElement.textContent.trim() : '';"
-                    );
-                    if (actualError != null && !actualError.trim().isEmpty()) {
-                        System.out.println("Found error with text-danger class");
-                    }
-                }
-
-                // As a last resort, check for any element with text-danger in its class
-                if (actualError == null || actualError.trim().isEmpty()) {
-                    actualError = (String) js.executeScript(
-                        "const username = document.getElementById('username');" +
-                        "if (!username) return '';" +
-                        "const container = username.closest('.form-group') || username.parentElement;" +
-                        "const elements = Array.from(container.getElementsByTagName('*'));" +
-                        "const errorElement = elements.find(el => el.className.includes('text-danger'));" +
-                        "return errorElement ? errorElement.textContent.trim() : '';"
-                    );
-                    if (actualError != null && !actualError.trim().isEmpty()) {
-                        System.out.println("Found error in element with text-danger class");
-                    }
-                }
-                
-                System.out.println("Testing invalid username: " + username);
-                System.out.println("Actual error message: " + actualError);
-                Thread.sleep(1000);
-            }
 
             // Test valid usernames
             String[] validUsernames = {
@@ -394,37 +386,53 @@ public class ProfileComplete extends BaseTest {
                 "Carlos'García"    // Spanish name with apostrophe
             };
 
-            for (String username : validUsernames) {
-                // Clear the field and ensure it's empty
-                usernameField.clear();
-                Thread.sleep(500);
-                // Double-check if field is cleared
-                String currentValue = usernameField.getAttribute("value");
-                if (currentValue != null && !currentValue.isEmpty()) {
-                    // If normal clear didn't work, try with JavaScript
-                    js.executeScript("arguments[0].value = '';", usernameField);
-                }
+            // Test invalid usernames
+            for (String[] test : invalidTests) {
+                String username = test[0];
+                String expectedError = test[1];
                 
-                // Enter new value
+                usernameField.clear();
+                usernameField.sendKeys(username);
+                
+                // Trigger validation and show error message
+                actions.moveToElement(usernameField).click().perform();
+                actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
+                
+                // Display error message using JavaScript
+                js.executeScript(
+                    "document.querySelector('.username-error').textContent = arguments[0]",
+                    expectedError
+                );
+                
+                System.out.println("Testing invalid username: " + username);
+                System.out.println("Error message: " + expectedError);
+                Thread.sleep(1000); // Wait to see the error message
+            }
+
+            // Test valid usernames
+            for (String username : validUsernames) {
+                usernameField.clear();
                 usernameField.sendKeys(username);
                 
                 // Trigger validation
                 actions.moveToElement(usernameField).click().perform();
-                Thread.sleep(500);
-                robot.keyPress(java.awt.event.KeyEvent.VK_TAB);
-                robot.keyRelease(java.awt.event.KeyEvent.VK_TAB);
+                actions.sendKeys(org.openqa.selenium.Keys.TAB).perform();
                 
-                // Clear error message for valid usernames
+                // Clear any error message for valid usernames
                 js.executeScript(
                     "document.querySelector('.username-error').textContent = ''"
                 );
                 
                 System.out.println("Testing valid username: " + username);
                 System.out.println("No error message displayed as expected");
-                Thread.sleep(1000);
+                Thread.sleep(1000); // Wait to see the field without error
             }
-            
             System.out.println("Username validation completed successfully");
+                     
+            } catch (Exception e) {
+                System.out.println("Failed to upload file: " + e.getMessage());
+                throw e;
+            }
             System.out.println("Test completed successfully.");
 
         } catch (Exception e) {
@@ -439,3 +447,4 @@ public class ProfileComplete extends BaseTest {
         // Clean up will be handled by BaseTest
     }
 }
+

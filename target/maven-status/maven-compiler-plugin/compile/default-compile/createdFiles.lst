@@ -1,2 +1,3 @@
-com\ctbids\McpServerApplication.class
 com\ctbids\service\SeleniumService.class
+com\ctbids\McpServerApplication.class
+com\ctbids\utils\ValidationUtils.class
