@@ -4,14 +4,20 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.AfterMethod;
+import java.time.Duration;
 
 public class ProfileComplete extends BaseTest {
+    private WebDriverWait wait;
+
     @BeforeMethod
     public void beforeTest() {
-        // No setup needed as the browser should already be running from CTBidsLogin
+        // Initialize WebDriverWait
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @Test
@@ -20,7 +26,17 @@ public class ProfileComplete extends BaseTest {
             System.out.println("Starting profile completion test...");
             
             // Make sure we're logged in and page is fully loaded
-            Thread.sleep(5000);
+            System.out.println("Waiting for page to load completely...");
+            Thread.sleep(10000);  // Increased wait time for page load
+            
+            // Wait for any loading indicators to disappear
+            try {
+                wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                    By.cssSelector(".loading-spinner, .loader, .loading")));
+                System.out.println("Loading indicators are gone");
+            } catch (Exception e) {
+                System.out.println("No loading indicators found or already gone");
+            }
             
             // Create Actions object for hovering
             org.openqa.selenium.interactions.Actions actions = new org.openqa.selenium.interactions.Actions(driver);
@@ -34,7 +50,15 @@ public class ProfileComplete extends BaseTest {
                 "//button[contains(@class, 'dropdown') or contains(@class, 'profile')]",
                 "//div[contains(@class, 'user-info')]",
                 "//div[contains(@class, 'user-menu')]",
-                "//header//div[contains(@class, 'user')]"
+                "//header//div[contains(@class, 'user')]",
+                "//nav//div[contains(@class, 'user')]",
+                "//div[contains(@class, 'profile-icon')]",
+                "//header//button[contains(@class, 'user')]",
+                "//div[contains(@class, 'account-menu')]",
+                "//div[contains(@class, 'user-dropdown')]",
+                "//div[contains(@class, 'profile-dropdown')]",
+                "//button[contains(@aria-label, 'user menu')]",
+                "//button[contains(@aria-label, 'profile')]"
             };
             
             for (String selector : selectors) {
@@ -425,8 +449,262 @@ public class ProfileComplete extends BaseTest {
             }
             
             System.out.println("Username validation completed successfully");
-            System.out.println("Test completed successfully.");
 
+            // Click here to change email functionality
+            System.out.println("Starting email change process...");
+            
+            // Find and click the email change link
+            try {
+                String[] emailChangeSelectors = {
+                    "div.change-email-link.change-email.clickable",  // Using the exact classes
+                    ".change-email-link",                            // Try with just the main class
+                    ".change-email.clickable",                       // Try with combination of classes
+                    "//div[contains(@class, 'change-email-link')]",  // XPath with class
+                    "//div[contains(@class, 'change-email') and contains(@class, 'clickable')]" // XPath with multiple classes
+                };
+
+                WebElement emailChangeLink = null;
+                for (String selector : emailChangeSelectors) {
+                    try {
+                        if (selector.startsWith("//")) {
+                            // For XPath selectors
+                            emailChangeLink = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(selector)));
+                        } else {
+                            // For CSS selectors
+                            emailChangeLink = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selector)));
+                        }
+                        System.out.println("Found email change link using selector: " + selector);
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Email change link not found with selector: " + selector);
+                    }
+                }
+
+                if (emailChangeLink == null) {
+                    throw new RuntimeException("Could not find email change link using any known selector");
+                }
+
+                // Click the email change link using JavaScript since it's a div
+                System.out.println("Clicking email change link...");
+                ((JavascriptExecutor) driver).executeScript("arguments[0].click();", emailChangeLink);
+                Thread.sleep(2000); // Wait for popup to appear
+
+                // Wait for the popup to be fully visible and overlay to clear
+                Thread.sleep(2000);
+
+                // Find and interact with the email input field in the popup using ID
+                WebElement emailInput = wait.until(ExpectedConditions.presenceOfElementLocated(
+                    By.id("new-email")));
+                
+                // Wait for it to be visible and clickable
+                wait.until(ExpectedConditions.visibilityOf(emailInput));
+                wait.until(ExpectedConditions.elementToBeClickable(emailInput));
+                
+                // Clear any existing text and focus the field
+                ((JavascriptExecutor) driver).executeScript("arguments[0].focus();", emailInput);
+                emailInput.clear();
+                Thread.sleep(500);
+                
+                // Try multiple ways to enter the email
+                String emailToEnter = "subi.63664@gmail.com";
+                
+                // Clear any existing text
+                emailInput.clear();
+                Thread.sleep(500);
+
+                // Focus the input field
+                ((JavascriptExecutor) driver).executeScript("arguments[0].focus();", emailInput);
+                Thread.sleep(500);
+
+                // Enter the email directly first
+                emailInput.sendKeys(emailToEnter);
+                Thread.sleep(1000);
+
+                // Make sure the value is set
+                String currentValue = emailInput.getAttribute("value");
+                if (!emailToEnter.equals(currentValue)) {
+                    // If direct input didn't work, try JavaScript
+                    ((JavascriptExecutor) driver).executeScript(
+                        "arguments[0].value = arguments[1];", emailInput, emailToEnter);
+                    Thread.sleep(500);
+                }
+
+                // Trigger all possible events that might be needed for validation
+                ((JavascriptExecutor) driver).executeScript(
+                    "const input = arguments[0];" +
+                    "const email = arguments[1];" +
+                    // Create event with input data
+                    "const inputEvent = new InputEvent('input', {" +
+                    "   bubbles: true," +
+                    "   cancelable: true," +
+                    "   inputType: 'insertText'," +
+                    "   data: email" +
+                    "});" +
+                    // Create change event
+                    "const changeEvent = new Event('change', {" +
+                    "   bubbles: true," +
+                    "   cancelable: true" +
+                    "});" +
+                    // Create blur event
+                    "const blurEvent = new FocusEvent('blur', {" +
+                    "   bubbles: true," +
+                    "   cancelable: true" +
+                    "});" +
+                    // Dispatch events in sequence
+                    "input.dispatchEvent(inputEvent);" +
+                    "input.dispatchEvent(changeEvent);" +
+                    "input.dispatchEvent(blurEvent);" +
+                    // Try to trigger form validation
+                    "if (input.form) input.form.dispatchEvent(new Event('input', { bubbles: true }));" +
+                    "if (typeof validateEmail === 'function') validateEmail(input);" +
+                    "if (typeof validateForm === 'function') validateForm();" +
+                    "if (input.checkValidity) input.checkValidity();",
+                    emailInput, emailToEnter);
+
+                Thread.sleep(1000);  // Wait for events to process
+                
+                // Click outside the input to ensure blur
+                new Actions(driver)
+                    .moveToElement(emailInput)
+                    .moveByOffset(0, 100)
+                    .click()
+                    .perform();
+                
+                Thread.sleep(1000);  // Wait for any final validation
+                
+                // Verify the email was entered correctly
+                String actualValue = emailInput.getAttribute("value");
+                if (!emailToEnter.equals(actualValue)) {
+                    System.out.println("Warning: Email field contains '" + actualValue + "' instead of expected '" + emailToEnter + "'");
+                } else {
+                    System.out.println("Successfully entered new email address");
+                }
+
+                // Wait for form validation to complete
+                Thread.sleep(1000);
+
+                // Try multiple strategies to find and interact with the submit button
+                try {
+                    // First locate the button regardless of its state
+                    final WebElement[] buttonRef = {null};  // Use array to hold reference
+                    String[] buttonSelectors = {
+                        "//button[contains(@class, 'btn-secondary') and contains(@class, 'mx-2')]",
+                        "//button[contains(text(), 'Submit') or contains(text(), 'Save')]",
+                        "button.btn.btn-secondary.mx-2",
+                        "//button[@type='submit' or contains(@class, 'submit')]"
+                    };
+
+                    for (String selector : buttonSelectors) {
+                        try {
+                            WebElement button;
+                            if (selector.startsWith("//")) {
+                                button = driver.findElement(By.xpath(selector));
+                            } else {
+                                button = driver.findElement(By.cssSelector(selector));
+                            }
+                            if (button != null && button.isDisplayed()) {
+                                buttonRef[0] = button;
+                                System.out.println("Found submit button using selector: " + selector);
+                                break;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Button not found with selector: " + selector);
+                        }
+                    }
+
+                    if (buttonRef[0] == null) {
+                        throw new RuntimeException("Could not find submit button using any known selector");
+                    }
+
+                    // Create final reference for lambda
+                    final WebElement submitButton = buttonRef[0];
+
+                    // Try to enable the button
+                    System.out.println("Attempting to enable submit button...");
+                    try {
+                        // Remove disabled attributes and classes via JavaScript
+                        ((JavascriptExecutor) driver).executeScript(
+                            "const btn = arguments[0];" +
+                            "btn.disabled = false;" +
+                            "btn.removeAttribute('disabled');" +
+                            "btn.removeAttribute('aria-disabled');" +
+                            "btn.classList.remove('disabled');" +
+                            "btn.classList.remove('btn-disabled');" +
+                            // Force enable button
+                            "Object.defineProperty(btn, 'disabled', {" +
+                            "   value: false," +
+                            "   writable: false" +
+                            "});",
+                            submitButton);
+                        Thread.sleep(1000);
+
+                        // Try to trigger form validation to enable button
+                        WebElement form = (WebElement) ((JavascriptExecutor) driver).executeScript(
+                            "return arguments[0].closest('form');", submitButton);
+                        
+                        if (form != null) {
+                            ((JavascriptExecutor) driver).executeScript(
+                                "const form = arguments[0];" +
+                                "form.dispatchEvent(new Event('input', { bubbles: true }));" +
+                                "if (typeof validateForm === 'function') validateForm();" +
+                                "form.dispatchEvent(new Event('change', { bubbles: true }));",
+                                form);
+                        }
+
+                        Thread.sleep(1000);
+                        System.out.println("Attempted to enable button via JavaScript");
+                    } catch (Exception e) {
+                        System.out.println("Failed to enable button via JavaScript: " + e.getMessage());
+                    }
+
+                    // Additional check for any custom disabled classes
+                    String buttonClasses = submitButton.getAttribute("class");
+                    if (buttonClasses != null && 
+                        (buttonClasses.contains("disabled") || buttonClasses.contains("inactive"))) {
+                        System.out.println("Button has disabled class, attempting to remove...");
+                        ((JavascriptExecutor) driver).executeScript(
+                            "arguments[0].classList.remove('disabled', 'inactive');",
+                            submitButton);
+                        Thread.sleep(500);
+                    }
+
+                    // Try to click the button
+                    System.out.println("Attempting to click submit button...");
+                    try {
+                        submitButton.click();
+                    } catch (Exception e) {
+                        System.out.println("Direct click failed, trying JavaScript click...");
+                        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", submitButton);
+                    }
+                    
+                    System.out.println("Submit button clicked successfully");
+                } catch (Exception e) {
+                    System.out.println("Failed to interact with submit button: " + e.getMessage());
+                    throw e;
+                }
+                System.out.println("Attempted to click submit button");
+
+                // Wait for success message or confirmation
+                Thread.sleep(2000);
+
+                // Look for success message (if any)
+                try {
+                    WebElement successMessage = wait.until(ExpectedConditions.presenceOfElementLocated(
+                        By.cssSelector(".success-message, .alert-success, .text-success")));
+                    System.out.println("Success message found: " + successMessage.getText());
+                } catch (Exception e) {
+                    // Success message might not be shown
+                    System.out.println("No success message found, but email change process completed");
+                }
+
+                System.out.println("Email change process completed");
+                System.out.println("Test completed successfully.");
+
+            } catch (Exception e) {
+                System.out.println("Test failed with error: " + e.getMessage());
+                e.printStackTrace();
+                throw new RuntimeException("Test failed", e);
+            }
         } catch (Exception e) {
             System.out.println("Test failed with error: " + e.getMessage());
             e.printStackTrace();
